@@ -7,7 +7,7 @@ USER root
 
 # Set DEFAULT ENV for app
 ENV APP_URL=http://localhost:8080
-ENV DB_CONNECTION=sqlite
+ENV DB_CONNECTION=mysql
 ENV SESSION_DRIVER=file
 ENV CACHE_DRIVER=file
 ENV LOG_CHANNEL=stderr
@@ -70,7 +70,6 @@ WORKDIR /var/www/html
 COPY --from=asset_builder /var/www/html/public/build ./public/build
 COPY --from=asset_builder /var/www/html/public/js ./public/js
 
-RUN touch /var/www/html/storage/database.sqlite
 RUN php artisan migrate --force
 
 RUN php artisan storage:link
